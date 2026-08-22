@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaOps Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .header {
+            background: #0f4c5c;
+            color: white;
+            padding: 25px 40px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .header p {
+            margin: 8px 0 0;
+            opacity: 0.85;
+        }
+
+        .container {
+            padding: 35px 40px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin: 0 0 12px;
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .profit {
+            color: #16803c;
+        }
+
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>AquaOps</h1>
+        <p>Business Analytics Dashboard</p>
+    </div>
+
+    <div class="container">
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Revenue</h3>
+                <div class="value" id="revenue">Loading...</div>
+            </div>
+
+            <div class="card">
+                <h3>Total Expenses</h3>
+                <div class="value" id="expenses">Loading...</div>
+            </div>
+
+            <div class="card">
+                <h3>Total Profit</h3>
+                <div class="value profit" id="profit">Loading...</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        fetch("http://127.0.0.1:5000/analytics/profit")
+            .then(response => response.json())
+            .then(data => {
+
+                document.getElementById("revenue").textContent =
+                    "₹" + Number(data.total_revenue).toLocaleString("en-IN");
+
+                document.getElementById("expenses").textContent =
+                    "₹" + Number(data.total_expenses).toLocaleString("en-IN");
+
+                document.getElementById("profit").textContent =
+                    "₹" + Number(data.profit).toLocaleString("en-IN");
+
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    </script>
+
+</body>
+</html>

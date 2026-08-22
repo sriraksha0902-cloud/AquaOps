@@ -1,66 +1,81 @@
-# AquaOps
+# AquaOps – Business Analytics & Secure Data Management System
 
-> Business Intelligence & Operations Platform for Water Technology Startups
+AquaOps is a business analytics and data management system developed for a water-tech startup. The system connects a MySQL database with a Flask backend and a web-based dashboard to provide business insights while incorporating basic application security and audit logging.
 
-AquaOps is a full-stack business intelligence and operations management platform designed to help water technology startups streamline customer management, quotation generation, sales tracking, expense monitoring, and executive analytics through a unified dashboard.
+## 🚀 Features
 
----
+### Business Analytics
+- Real-time calculation of total revenue
+- Total expense tracking
+- Automatic profit calculation
+- Data retrieved directly from MySQL
+- Web-based analytics dashboard
 
-## Key Features
+### Database Management
+- MySQL relational database
+- Structured tables for:
+  - Customers
+  - Products
+  - Sales Orders
+  - Sales Items
+  - Expenses
+- Flask backend for database interaction
 
-- Customer Relationship Management (CRM)
-- Product Catalog Management
-- Quotation & Pricing Automation
-- Sales Order Management
-- Expense Tracking
-- Executive Dashboard
-- Business Analytics & KPI Visualization
+### 🔐 Security Features
+- Database credentials stored using environment variables
+- `.env` excluded from version control using `.gitignore`
+- Separate database user for application access
+- Application audit logging
+- Records HTTP requests and responses
+- Records request timestamps
+- Records client IP addresses
+- Records HTTP response status codes
 
----
+## 🏗️ System Architecture
 
-## Technology Stack
+The system follows a simple three-layer architecture:
 
-### Backend
-- Flask
+Frontend  
+↓  
+Flask REST API  
+↓  
+MySQL Database
+
+The frontend communicates with the Flask backend through HTTP requests. The backend retrieves and processes data from MySQL and returns the results to the dashboard.
+
+## 🛠️ Technologies Used
+
 - Python
-
-### Frontend
-- React (planned)
-
-### Database
+- Flask
+- Flask-CORS
 - MySQL
+- MySQL Connector/Python
+- HTML
+- JavaScript
+- CSS
+- python-dotenv
+- Git/GitHub
 
-### Data Visualization
-- Chart.js
+## 📁 Project Structure
 
-### Version Control
-- Git & GitHub
-
----
-
-## Project Status
-
-🚧 Currently under active development.
-
-Version: **1.0**
-
----
-
-## Roadmap
-
-- [x] Database Design
-- [ ] Backend API
-- [ ] Authentication
-- [ ] Customer Module
-- [ ] Product Module
-- [ ] Quotation Module
-- [ ] Sales Module
-- [ ] Expense Module
-- [ ] Analytics Dashboard
-- [ ] Founder Insights
-
----
-
-## Author
-
-Raksha
+```text
+AquaOps/
+│
+├── backend/
+│   ├── app.py
+│   ├── db.py
+│   └── analytics.py
+│
+├── database/
+│
+├── docs/
+│
+├── frontend/
+│   └── index.html
+│
+├── screenshots/
+│
+├── .env
+├── .gitignore
+├── LICENSE
+└── README.md
